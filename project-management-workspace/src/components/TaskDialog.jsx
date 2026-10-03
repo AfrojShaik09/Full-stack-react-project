@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
 import styled from 'styled-components';
 import { currentUser, projects } from '../data/workspaceConfig.js';
-import { ActionButton, IconButton } from './Primitives.jsx';
+import { IconButton } from './Primitives.jsx';
 
 const Backdrop = styled.div`
   position: fixed;
@@ -10,14 +12,14 @@ const Backdrop = styled.div`
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 16px;
-  background: rgba(20, 29, 23, 0.38);
+  padding: ${({ theme }) => theme.sizes.space[4]};
+  background: ${({ theme }) => theme.colors.overlayDialog};
 `;
 const Dialog = styled.form`
   width: min(100%, 470px);
-  padding: 23px;
+  padding: ${({ theme }) => theme.sizes.space[6]};
   border: 1px solid ${({ theme }) => theme.colors.line};
-  border-radius: 16px;
+  border-radius: ${({ theme }) => theme.sizes.radius.xl};
   background: ${({ theme }) => theme.colors.surface};
   box-shadow: ${({ theme }) => theme.colors.shadow};
 `;
@@ -45,19 +47,19 @@ const Label = styled.label`
   font-weight: 700;
 `;
 const Input = styled.input`
-  min-height: 43px;
-  padding: 0 11px;
+  min-height: ${({ theme }) => theme.sizes.control.field};
+  padding: 0 ${({ theme }) => theme.sizes.space[3]};
   border: 1px solid ${({ theme }) => theme.colors.lineStrong};
-  border-radius: 9px;
+  border-radius: ${({ theme }) => theme.sizes.radius.md};
   background: ${({ theme }) => theme.colors.surface};
   color: ${({ theme }) => theme.colors.ink};
   font-size: 13px;
 `;
 const Select = styled.select`
-  min-height: 43px;
-  padding: 0 11px;
+  min-height: ${({ theme }) => theme.sizes.control.field};
+  padding: 0 ${({ theme }) => theme.sizes.space[3]};
   border: 1px solid ${({ theme }) => theme.colors.lineStrong};
-  border-radius: 9px;
+  border-radius: ${({ theme }) => theme.sizes.radius.md};
   background: ${({ theme }) => theme.colors.surface};
   color: ${({ theme }) => theme.colors.ink};
   font-size: 13px;
@@ -110,9 +112,11 @@ export default function TaskDialog({ onClose, onSubmit, activeProjectId }) {
             <h2 id="new-task-title">Create a task</h2>
             <p>Add the next step for your team.</p>
           </div>
-          <IconButton type="button" aria-label="Close dialog" onClick={onClose}>
-            <X size={17} />
-          </IconButton>
+          <Tooltip title="Close task form">
+            <IconButton type="button" aria-label="Close dialog" onClick={onClose}>
+              <X size={17} />
+            </IconButton>
+          </Tooltip>
         </Header>
         <Label>
           Task name
@@ -150,10 +154,12 @@ export default function TaskDialog({ onClose, onSubmit, activeProjectId }) {
           <Input type="date" value={dueDate} onChange={(event) => setDueDate(event.target.value)} />
         </Label>
         <Actions>
-          <ActionButton type="button" $secondary onClick={onClose}>
+          <Button type="button" variant="text" color="inherit" onClick={onClose}>
             Cancel
-          </ActionButton>
-          <ActionButton type="submit">Create task</ActionButton>
+          </Button>
+          <Button type="submit" variant="contained" color="primary">
+            Create task
+          </Button>
         </Actions>
       </Dialog>
     </Backdrop>

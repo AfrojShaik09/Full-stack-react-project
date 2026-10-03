@@ -1,0 +1,38 @@
+export const sizeTokens = {
+  space: {
+    0: '0',
+    1: '4px',
+    2: '8px',
+    3: '12px',
+    4: '16px',
+    5: '20px',
+    6: '24px',
+    8: '32px',
+    10: '40px',
+    12: '48px',
+  },
+  radius: {
+    sm: '6px',
+    md: '9px',
+    lg: '12px',
+    xl: '16px',
+    pill: '999px',
+  },
+  control: {
+    compact: '34px',
+    default: '40px',
+    field: '43px',
+    icon: '38px',
+    iconSmall: '31px',
+  },
+  avatar: { small: '29px', default: '36px' },
+  font: { xs: '10px', sm: '12px', md: '14px', lg: '19px', heading: '27px' },
+  breakpoint: {
+    search: '440px',
+    compact: '500px',
+    mobile: '560px',
+    content: '650px',
+    account: '750px',
+    tablet: '900px',
+  },
+};

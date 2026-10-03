@@ -18,7 +18,8 @@ Create a production build with `npm run build`.
 - `src/hooks/`: Redux selectors, browser persistence, and page workflows.
 - `src/redux/`: Redux Toolkit slice and store.
 - `src/data/`: starter task data, current profile, project and board configuration.
-- `src/theme.js`: semantic color tokens for light and dark themes.
+- `src/tokens/colors.js` and `src/tokens/sizes.js`: primitive colors, spacing, radii, controls, typography, and breakpoint tokens.
+- `src/theme.js`: semantic light/dark themes, shared component variants, and matching Material UI themes.
 
 The signed-in profile is configured in `src/data/workspaceConfig.js`. Previously saved tasks assigned to the starter profile are migrated to Afroj Shaik on load.
 
@@ -27,6 +28,7 @@ The signed-in profile is configured in `src/data/workspaceConfig.js`. Previously
 - Keep pages focused on presentation and composition. Put reusable behavior in custom hooks and reusable visuals in components.
 - Keep Redux reducers synchronous and side-effect free. Put browser storage and UI workflows in hooks.
 - Use semantic token names through the styled-components theme; do not hard-code UI colors in feature screens.
+- Use the shared button/avatar variants and Material UI components for standard controls; derive MUI styling from the same semantic tokens.
 - Keep styles in styled-components. Do not add standalone CSS files.
 - Use PascalCase for components, `use`-prefixed camelCase for hooks, and descriptive names for state and handlers.
 - Give icon-only controls accessible names, use semantic HTML, and preserve keyboard-visible focus states.

@@ -34,10 +34,10 @@ const Content = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   padding: 33px 35px 48px;
-  @media (max-width: 900px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.tablet}) {
     padding: 28px 22px 38px;
   }
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     padding: 23px 14px 32px;
   }
 `;
@@ -47,7 +47,7 @@ const Intro = styled.div`
   justify-content: space-between;
   gap: 20px;
   margin-bottom: 27px;
-  @media (max-width: 650px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.content}) {
     align-items: flex-start;
     flex-direction: column;
   }
@@ -65,7 +65,7 @@ const Heading = styled.div`
     color: ${({ theme }) => theme.colors.inkMuted};
     font-size: 12px;
   }
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     h1 {
       font-size: 23px;
     }
@@ -87,7 +87,7 @@ const InviteButton = styled.button`
   font-size: 11px;
   font-weight: 650;
   cursor: pointer;
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     display: none;
   }
 `;
@@ -103,7 +103,7 @@ const Stats = styled.section`
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 27px;
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     gap: 8px;
   }
 `;
@@ -115,7 +115,7 @@ const Stat = styled.article`
   border: 1px solid ${({ theme }) => theme.colors.line};
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.surface};
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     min-height: 90px;
     padding: 12px 11px;
   }
@@ -130,7 +130,7 @@ const StatTop = styled.div`
   svg {
     color: ${({ $tone, theme }) => theme.colors[$tone]};
   }
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     font-size: 9px;
   }
 `;
@@ -140,7 +140,7 @@ const StatNumber = styled.strong`
   font-size: 26px;
   line-height: 1;
   letter-spacing: 0;
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     font-size: 22px;
   }
 `;
@@ -165,7 +165,7 @@ const BoardHeader = styled.div`
   gap: 14px;
   padding: 17px 20px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.line};
-  @media (max-width: 650px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.content}) {
     align-items: flex-start;
     flex-direction: column;
     padding: 15px;
@@ -198,7 +198,7 @@ const Tools = styled.div`
   display: flex;
   align-items: center;
   gap: 7px;
-  @media (max-width: 500px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.compact}) {
     width: 100%;
     justify-content: space-between;
   }
@@ -219,7 +219,7 @@ const ToolButton = styled.button`
   &:hover {
     background: ${({ theme }) => theme.colors.surfaceMuted};
   }
-  @media (max-width: 500px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.compact}) {
     padding: 0 8px;
   }
 `;
@@ -249,7 +249,7 @@ const Board = styled.div`
   gap: 14px;
   padding: 18px 19px 22px;
   overflow: auto;
-  @media (max-width: 650px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.content}) {
     grid-template-columns: repeat(3, minmax(245px, 1fr));
     padding: 14px;
   }
@@ -310,7 +310,7 @@ const CardList = styled.div`
 `;
 const ListRows = styled.div`
   padding: 4px 20px 16px;
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     padding: 4px 13px 14px;
   }
 `;
@@ -325,7 +325,7 @@ const ListRow = styled.div`
   &:last-child {
     border-bottom: 0;
   }
-  @media (max-width: 650px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.content}) {
     grid-template-columns: minmax(160px, 2fr) 1fr 72px;
     & > *:nth-child(3) {
       display: none;
@@ -348,7 +348,7 @@ const Checkbox = styled.button`
   border: 1px solid ${({ $done, theme }) => ($done ? theme.colors.accent : theme.colors.lineStrong)};
   border-radius: 5px;
   background: ${({ $done, theme }) => ($done ? theme.colors.accent : 'transparent')};
-  color: white;
+  color: ${({ theme }) => theme.colors.onStatus};
   cursor: pointer;
 `;
 const RowMeta = styled.span`
@@ -684,7 +684,10 @@ export default function WorkspacePage({ dark, onToggleTheme }) {
                   Calendar view is ready for your tasks. Switch to the board or list to move work
                   between stages.
                 </p>
-                <CalendarBackButton $secondary onClick={() => workspace.selectView('board')}>
+                <CalendarBackButton
+                  $variant="secondary"
+                  onClick={() => workspace.selectView('board')}
+                >
                   Back to board
                 </CalendarBackButton>
               </CalendarView>

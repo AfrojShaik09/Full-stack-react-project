@@ -1,4 +1,5 @@
 import { Bell, ChevronDown, Menu, Moon, Plus, Search, Sun } from 'lucide-react';
+import Tooltip from '@mui/material/Tooltip';
 import styled from 'styled-components';
 import { currentUser } from '../data/workspaceConfig.js';
 import { ActionButton, Avatar, Field, IconButton } from './Primitives.jsx';
@@ -11,10 +12,10 @@ const Bar = styled.header`
   padding: 0 35px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.line};
   background: ${({ theme }) => theme.colors.surface};
-  @media (max-width: 900px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.tablet}) {
     padding: 0 22px;
   }
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     min-height: 64px;
     padding: 0 14px;
     gap: 8px;
@@ -22,7 +23,7 @@ const Bar = styled.header`
 `;
 const MenuButton = styled(IconButton)`
   display: none;
-  @media (max-width: 900px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.tablet}) {
     display: inline-grid;
   }
 `;
@@ -40,11 +41,11 @@ const SearchWrap = styled.label`
   input {
     padding-left: 37px;
   }
-  @media (max-width: 650px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.content}) {
     width: auto;
     flex: 1;
   }
-  @media (max-width: 440px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.search}) {
     input {
       width: 38px;
       padding: 0;
@@ -77,7 +78,7 @@ const Divider = styled.span`
   height: 27px;
   background: ${({ theme }) => theme.colors.line};
   margin: 0 2px;
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     display: none;
   }
 `;
@@ -102,7 +103,7 @@ const User = styled.button`
     text-align: left;
     font-size: 11px;
   }
-  @media (max-width: 750px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.account}) {
     span,
     svg {
       display: none;
@@ -112,7 +113,7 @@ const User = styled.button`
 const AddButton = styled(ActionButton)`
   flex: 0 0 auto;
   white-space: nowrap;
-  @media (max-width: 560px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.mobile}) {
     min-height: 38px;
     width: 38px;
     padding: 0;
@@ -144,9 +145,11 @@ export default function Topbar({ search, onSearch, onCreate, dark, onToggleTheme
       >
         {dark ? <Sun size={17} /> : <Moon size={17} />}
       </IconButton>
-      <IconButton aria-label="Notifications" title="Notifications">
-        <Bell size={17} />
-      </IconButton>
+      <Tooltip title="Notifications">
+        <IconButton aria-label="Notifications">
+          <Bell size={17} />
+        </IconButton>
+      </Tooltip>
       <Divider />
       <User type="button" aria-label={`${currentUser.name} account`}>
         <Avatar $color="accent">{currentUser.initials}</Avatar>

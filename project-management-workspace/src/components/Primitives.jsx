@@ -1,13 +1,14 @@
 import styled from 'styled-components';
+import { avatarVariants, buttonVariants } from '../theme.js';
 
 export const IconButton = styled.button`
-  width: 38px;
-  height: 38px;
+  width: ${({ $size, theme }) => theme.sizes.control[$size] || theme.sizes.control.icon};
+  height: ${({ $size, theme }) => theme.sizes.control[$size] || theme.sizes.control.icon};
   display: inline-grid;
   place-items: center;
   flex: 0 0 auto;
   border: 1px solid ${({ theme }) => theme.colors.line};
-  border-radius: 10px;
+  border-radius: ${({ theme }) => theme.sizes.radius.lg};
   background: ${({ theme }) => theme.colors.surface};
   color: ${({ theme }) => theme.colors.inkMuted};
   cursor: pointer;
@@ -23,24 +24,26 @@ export const IconButton = styled.button`
 `;
 
 export const ActionButton = styled.button`
-  min-height: 40px;
+  min-height: ${({ $size, theme }) =>
+    $size === 'compact' ? theme.sizes.control.compact : theme.sizes.control.default};
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 0 15px;
+  gap: ${({ theme }) => theme.sizes.space[2]};
+  padding: 0 ${({ theme }) => theme.sizes.space[4]};
   border: 1px solid
-    ${({ $secondary, theme }) => ($secondary ? theme.colors.line : theme.colors.accent)};
-  border-radius: 10px;
-  background: ${({ $secondary, theme }) => ($secondary ? theme.colors.surface : theme.colors.accent)};
-  color: ${({ $secondary, theme }) => ($secondary ? theme.colors.ink : '#ffffff')};
+    ${({ $variant = 'primary', theme }) => theme.colors[buttonVariants[$variant].border]};
+  border-radius: ${({ theme }) => theme.sizes.radius.lg};
+  background: ${({ $variant = 'primary', theme }) => theme.colors[buttonVariants[$variant].background]};
+  color: ${({ $variant = 'primary', theme }) => theme.colors[buttonVariants[$variant].foreground]};
   font-weight: 650;
   cursor: pointer;
   transition:
     background 140ms ease,
     transform 140ms ease;
   &:hover {
-    background: ${({ $secondary, theme }) => ($secondary ? theme.colors.surfaceMuted : theme.colors.accentHover)};
+    background: ${({ $variant = 'primary', theme }) =>
+      theme.colors[buttonVariants[$variant].hoverBackground]};
   }
   &:active {
     transform: translateY(1px);
@@ -56,25 +59,25 @@ export const Eyebrow = styled.span`
 `;
 
 export const Avatar = styled.span`
-  width: ${({ $small }) => ($small ? '29px' : '36px')};
-  height: ${({ $small }) => ($small ? '29px' : '36px')};
+  width: ${({ $small, theme }) => ($small ? theme.sizes.avatar.small : theme.sizes.avatar.default)};
+  height: ${({ $small, theme }) => ($small ? theme.sizes.avatar.small : theme.sizes.avatar.default)};
   display: inline-grid;
   place-items: center;
   flex: 0 0 auto;
   border: 2px solid ${({ theme }) => theme.colors.surface};
   border-radius: 50%;
-  background: ${({ $color, theme }) => theme.colors[$color] || theme.colors.accent};
-  color: white;
+  background: ${({ $color = 'accent', theme }) => theme.colors[avatarVariants[$color] || 'accent']};
+  color: ${({ theme }) => theme.colors.onAccent};
   font-size: ${({ $small }) => ($small ? '9px' : '10px')};
   font-weight: 750;
 `;
 
 export const Field = styled.input`
   width: 100%;
-  min-height: 42px;
-  padding: 0 12px;
+  min-height: ${({ theme }) => theme.sizes.control.field};
+  padding: 0 ${({ theme }) => theme.sizes.space[3]};
+  border-radius: ${({ theme }) => theme.sizes.radius.md};
   border: 1px solid ${({ theme }) => theme.colors.lineStrong};
-  border-radius: 9px;
   background: ${({ theme }) => theme.colors.surface};
   color: ${({ theme }) => theme.colors.ink};
   &::placeholder {

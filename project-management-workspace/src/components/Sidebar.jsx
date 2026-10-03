@@ -22,7 +22,7 @@ const Rail = styled.aside`
   padding: 23px 15px 17px;
   border-right: 1px solid ${({ theme }) => theme.colors.line};
   background: ${({ theme }) => theme.colors.surface};
-  @media (max-width: 900px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.tablet}) {
     position: fixed;
     z-index: 20;
     inset: 0 auto 0 0;
@@ -46,7 +46,7 @@ const BrandMark = styled.span`
   place-items: center;
   border-radius: 11px;
   background: ${({ theme }) => theme.colors.accent};
-  color: white;
+  color: ${({ theme }) => theme.colors.onAccent};
 `;
 const BrandName = styled.strong`
   font-size: 17px;
@@ -152,13 +152,13 @@ const ExpandIcon = styled(ChevronDown)`
 `;
 const Overlay = styled.button`
   display: none;
-  @media (max-width: 900px) {
+  @media (max-width: ${({ theme }) => theme.sizes.breakpoint.tablet}) {
     display: ${({ $open }) => ($open ? 'block' : 'none')};
     position: fixed;
     z-index: 19;
     inset: 0;
     border: 0;
-    background: rgba(17, 25, 20, 0.28);
+    background: ${({ theme }) => theme.colors.overlayNavigation};
   }
 `;
 
