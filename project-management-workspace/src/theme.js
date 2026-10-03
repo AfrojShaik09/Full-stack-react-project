@@ -2,6 +2,8 @@ import { createTheme } from '@mui/material/styles';
 import { colorTokens } from './tokens/colors.js';
 import { sizeTokens } from './tokens/sizes.js';
 
+export * from './theme/workspaceOverrides.js';
+
 const semanticColors = {
   light: {
     canvas: colorTokens.neutral[100],
@@ -30,6 +32,7 @@ const semanticColors = {
     focus: colorTokens.focus.light,
     selection: colorTokens.neutral.lightSelection,
     shadow: colorTokens.shadow.light,
+    shadowRaised: colorTokens.shadow.raised,
   },
   dark: {
     canvas: colorTokens.neutral.black,
@@ -58,6 +61,7 @@ const semanticColors = {
     focus: colorTokens.green[300],
     selection: colorTokens.neutral.darkSelection,
     shadow: colorTokens.shadow.dark,
+    shadowRaised: colorTokens.shadow.raised,
   },
 };
 
