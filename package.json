@@ -1,0 +1,26 @@
+{
+  "name": "collabflow",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A real-time collaborative project management platform.",
+  "scripts": {
+    "dev": "concurrently \"node server/server.js\" \"vite --host 127.0.0.1\"",
+    "server": "node server/server.js",
+    "client": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "concurrently": "latest",
+    "cors": "latest",
+    "express": "latest",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "socket.io": "latest",
+    "socket.io-client": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {}
+}

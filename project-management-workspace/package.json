@@ -1,0 +1,26 @@
+{
+  "name": "gather-project-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "format": "prettier --write \"src/**/*.{js,jsx}\" \"*.{js,json,html,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx}\" \"*.{js,json,html,md}\""
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-redux": "^9.2.0",
+    "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "prettier": "^3.6.2",
+    "vite": "^6.3.5"
+  }
+}
